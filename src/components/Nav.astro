@@ -1,0 +1,104 @@
+---
+import { t, routes, altLang, type Lang } from "../i18n/translations";
+
+interface Props {
+  lang: Lang;
+  currentPage?: string;
+}
+
+const { lang, currentPage = "home" } = Astro.props;
+const tr = t(lang);
+const r = routes[lang];
+const other = altLang[lang];
+const otherRoutes = routes[other];
+---
+
+<nav class="bg-navy-900 text-maroon sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href={r.home} class="flex items-center gap-3 shrink-0">
+        <img
+          src="/logo.svg"
+          class="h-30 w-auto"
+        />
+      </a>
+
+      <!-- Desktop menu -->
+      <div class="hidden md:flex items-center gap-1">
+        <a
+          href={r.home}
+          class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "home" ? "active" : ""}`}
+        >
+          {tr.nav.home}
+        </a>
+        <a
+          href={r.about}
+          class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "about" ? "active" : ""}`}
+        >
+          {tr.nav.about}
+        </a>
+        <a
+          href={r.projects}
+          class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "projects" ? "active" : ""}`}
+        >
+          {tr.nav.projects}
+        </a>
+        <a
+          href={r.partners}
+          class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "partners" ? "active" : ""}`}
+        >
+          {tr.nav.partners}
+        </a>
+        <a
+          href={r.form230}
+          class="ml-2 px-4 py-2 bg-amber-brand text-navy-950 rounded-md text-sm font-bold transition-colors hover:bg-amber-brand-dark"
+        >
+          {tr.nav.form230}
+        </a>
+      </div>
+
+      <!-- Language switcher + mobile menu button -->
+      <div class="flex items-center gap-2">
+        <!-- Language switcher -->
+        <a
+          href={otherRoutes[currentPage] || otherRoutes.home}
+          class="nav-glass flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-medium uppercase"
+          title={other === "en" ? "Switch to English" : "Schimbă în Română"}
+        >
+          {other}
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          class="nav-glass md:hidden p-2 rounded-md"
+          aria-label="Menu"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col gap-1">
+        <a href={r.home} class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "home" ? "active" : ""}`}>{tr.nav.home}</a>
+        <a href={r.about} class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "about" ? "active" : ""}`}>{tr.nav.about}</a>
+        <a href={r.projects} class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "projects" ? "active" : ""}`}>{tr.nav.projects}</a>
+        <a href={r.partners} class={`nav-glass px-3 py-2 rounded-md text-sm font-medium ${currentPage === "partners" ? "active" : ""}`}>{tr.nav.partners}</a>
+        <a href={r.form230} class="px-3 py-2 bg-amber-brand text-navy-950 rounded-md text-sm font-bold text-center mt-1">{tr.nav.form230}</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>

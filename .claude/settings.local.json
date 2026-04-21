@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(statusline)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$j = $input | ConvertFrom-Json; $f = $j.tool_input.file_path; if ($f -match '\\.(astro|ts|js|css|json)$') { npx prettier --write \"$f\" } 2>$null",
+            "shell": "powershell",
+            "statusMessage": "Formatare Prettier..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$j = $input | ConvertFrom-Json; $code = $j.tool_response.exitCode; if ($null -ne $code -and $code -ne 0) { @{systemMessage='Eroare detectata (exit code ' + $code + ') - verifica output-ul de mai sus'} | ConvertTo-Json -Compress }",
+            "shell": "powershell",
+            "statusMessage": "Verificare erori..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "Write-Output '{\"systemMessage\": \"Sesiune finalizata. Fisierele au fost salvate.\"}'",
+            "shell": "powershell",
+            "statusMessage": "Rezumat sesiune..."
+          }
+        ]
+      }
+    ]
+  }
+}

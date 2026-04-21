@@ -1,0 +1,75 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { t, routes } from "../../i18n/translations";
+import org from "../../data/organizatie.json";
+
+const lang = "en";
+const tr = t(lang);
+const r = routes[lang];
+---
+
+<Layout title="About Us" lang={lang} currentPage="about">
+  <section class="bg-gradient-to-br from-navy-900 to-navy-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-extrabold mb-4">About Us</h1>
+      <p class="text-navy-200 text-xl max-w-2xl">The story of Carla's Vision — why we exist and what drives us.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-amber-brand font-semibold uppercase tracking-wide mb-2">Our mission</p>
+          <h2 class="text-3xl font-bold text-navy-900 mb-6">Bringing clarity where it's needed most</h2>
+          <div class="space-y-4 text-body leading-relaxed">
+            <p>For many people, the world is literally unclear. A child who can't see the board at school, a parent who can't work safely, a grandparent who can no longer read their medications — all for a simple reason: lack of access to a consultation and a pair of glasses.</p>
+            <p>Carla's Vision Association was born from the desire to change these stories. We provide free ophthalmological consultations and glasses to those who cannot afford them.</p>
+            <p>Every consultation means a problem discovered in time. Every pair of glasses means new chances, confidence and independence.</p>
+          </div>
+        </div>
+        <div class="bg-navy-50 rounded-2xl p-10 border border-navy-100">
+          <div class="flex justify-center mb-6">
+            <img src="/logo.png" alt="Carla's Vision" class="h-32 w-auto" />
+          </div>
+          <blockquote class="text-center">
+            <p class="text-navy-800 text-xl font-medium italic leading-relaxed">"Together, we can restore clarity of vision — and hope."</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Our Values</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: "❤️", title: "Empathy", text: "Every beneficiary has a story. We listen, understand and act with care." },
+          { icon: "🎯", title: "Real impact", text: "We measure results and ensure help reaches those who truly need it." },
+          { icon: "🤝", title: "Partnership", text: "Together with doctors, companies and volunteers we build a strong support network." },
+          { icon: "🔍", title: "Transparency", text: "Every donation is tracked and reported. You know exactly how resources are used." },
+        ].map((v) => (
+          <div class="glass-card rounded-xl p-6 text-center">
+            <div class="text-4xl mb-4">{v.icon}</div>
+            <h3 class="font-bold text-white text-lg mb-2">{v.title}</h3>
+            <p class="text-navy-100 text-sm leading-relaxed">{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-navy-900 text-white text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4">Join our mission</h2>
+      <p class="text-navy-300 mb-8">Through volunteering, partnership or Form 230 — every contribution counts.</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href={r.form230} class="px-6 py-3 bg-amber-brand text-navy-950 font-bold rounded-lg hover:bg-amber-brand-dark transition-colors">Form 230</a>
+        <a href={`mailto:${org.email}`} class="px-6 py-3 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy-900 transition-colors">Contact us</a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,16 @@
+{
+  "nume": "Asociația Carla's Vision",
+  "cif": "XXXXXXXX",
+  "iban": "RO00 XXXX XXXX XXXX XXXX XXXX",
+  "banca": "Banca Transilvania",
+  "email": "contact@carlasvision.org",
+  "telefon": "+40 700 000 000",
+  "adresa": "Str. Exemplu, Nr. 1, București",
+  "facebook": "https://facebook.com/carlasvision",
+  "instagram": "https://instagram.com/carlasvision",
+  "stats": {
+    "consultatii": 1200,
+    "ochelari": 850,
+    "comunitati": 24
+  }
+}

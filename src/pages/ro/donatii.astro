@@ -1,0 +1,116 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { t, routes } from "../../i18n/translations";
+import org from "../../data/organizatie.json";
+
+const lang = "ro";
+const tr = t(lang);
+const r = routes[lang];
+---
+
+<Layout title="Donații" lang={lang} currentPage="donations">
+  <!-- Header -->
+  <section class="bg-gradient-to-br from-navy-900 to-navy-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-extrabold mb-4">{tr.donations.title}</h1>
+      <p class="text-navy-200 text-xl max-w-2xl">{tr.donations.description}</p>
+    </div>
+  </section>
+
+  <!-- Donation options -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-navy-900">{tr.donations.subtitle}</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <!-- Option 1: Unica -->
+        <div class="bg-white rounded-2xl border-2 border-gray-200 p-8 text-center hover:border-navy-400 transition-colors">
+          <div class="w-16 h-16 bg-navy-100 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-8 h-8 text-navy-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">{tr.donations.option1_title}</h3>
+          <p class="text-muted text-sm mb-6">{tr.donations.option1_text}</p>
+          <div class="space-y-2 mb-6">
+            {["20 RON", "50 RON", "100 RON", "200 RON"].map((suma) => (
+              <button class="w-full py-2 border border-navy-200 rounded-lg text-navy-700 font-medium hover:bg-navy-50 transition-colors text-sm">
+                {suma}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Option 2: Recurenta -->
+        <div class="bg-navy-900 text-white rounded-2xl border-2 border-navy-900 p-8 text-center relative">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="bg-amber-brand text-navy-950 text-xs font-bold px-3 py-1 rounded-full uppercase">
+              Recomandat
+            </span>
+          </div>
+          <div class="w-16 h-16 bg-navy-700 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-8 h-8 text-amber-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">{tr.donations.option2_title}</h3>
+          <p class="text-navy-300 text-sm mb-6">{tr.donations.option2_text}</p>
+          <p class="text-navy-200 text-sm">
+            Contactează-ne la <a href={`mailto:${org.email}`} class="text-amber-brand underline">{org.email}</a> pentru a stabili o donație lunară recurentă.
+          </p>
+        </div>
+
+        <!-- Option 3: 3.5% -->
+        <div class="bg-white rounded-2xl border-2 border-amber-200 p-8 text-center hover:border-amber-400 transition-colors">
+          <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-5">
+            <svg class="w-8 h-8 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-navy-900 mb-2">{tr.donations.option3_title}</h3>
+          <p class="text-muted text-sm mb-6">{tr.donations.option3_text}</p>
+          <a
+            href={r.form230}
+            class="block w-full py-3 bg-amber-brand text-navy-950 font-bold rounded-lg hover:bg-amber-brand-dark transition-colors"
+          >
+            {tr.donations.form230_cta}
+          </a>
+          <p class="text-faint text-xs mt-2">{tr.donations.form230_desc}</p>
+        </div>
+      </div>
+
+      <!-- Bank transfer -->
+      <div class="bg-navy-50 rounded-2xl p-8 border border-navy-100 max-w-2xl mx-auto">
+        <h3 class="text-xl font-bold text-navy-900 mb-5 flex items-center gap-2">
+          <svg class="w-6 h-6 text-navy-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          {tr.donations.bank_title}
+        </h3>
+        <dl class="space-y-3 text-sm">
+          <div class="flex justify-between">
+            <dt class="text-muted">Beneficiar:</dt>
+            <dd class="font-medium text-navy-900">{org.nume}</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-muted">CIF:</dt>
+            <dd class="font-medium text-navy-900">{org.cif}</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-muted">IBAN:</dt>
+            <dd class="font-mono font-medium text-navy-900">{org.iban}</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-muted">Bancă:</dt>
+            <dd class="font-medium text-navy-900">{org.banca}</dd>
+          </div>
+        </dl>
+        <p class="mt-4 text-faint text-xs">
+          💡 Actualizează datele bancare în <code class="bg-gray-100 px-1 rounded">src/data/organizatie.json</code>
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

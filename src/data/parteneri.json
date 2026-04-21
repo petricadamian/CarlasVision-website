@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "nume": "Partener Exemplu 1",
+    "logo": "/images/parteneri/partener1.png",
+    "website": "https://exemplu1.ro",
+    "descriere": "Partener strategic în domeniul sănătății"
+  },
+  {
+    "id": 2,
+    "nume": "Partener Exemplu 2",
+    "logo": "/images/parteneri/partener2.png",
+    "website": "https://exemplu2.ro",
+    "descriere": "Susținător al campaniilor de sănătate vizuală"
+  },
+  {
+    "id": 3,
+    "nume": "Partener Exemplu 3",
+    "logo": "/images/parteneri/partener3.png",
+    "website": "https://exemplu3.ro",
+    "descriere": "Partener în distribuția ochelarilor"
+  }
+]

@@ -1,0 +1,127 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { t, routes } from "../../i18n/translations";
+import org from "../../data/organizatie.json";
+
+const lang = "ro";
+const tr = t(lang);
+const r = routes[lang];
+---
+
+<Layout title="Despre noi" lang={lang} currentPage="about">
+  <!-- Page header -->
+  <section class="bg-gradient-to-br from-navy-900 to-navy-700 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-extrabold mb-4">Despre noi</h1>
+      <p class="text-navy-200 text-xl max-w-2xl">
+        Povestea Asociației Carla's Vision — de ce existăm și ce ne ghidează.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-amber-brand font-semibold uppercase tracking-wide mb-2">Misiunea noastră</p>
+          <h2 class="text-3xl font-bold text-navy-900 mb-6">
+            Oferim claritate acolo unde este cel mai multă nevoie
+          </h2>
+          <div class="prose prose-lg text-body space-y-4">
+            <p>
+              Pentru mulți oameni, lumea este neclară la propriu. Un copil care nu vede tabla la
+              școală, un părinte care nu poate munci în siguranță, un bunic care nu își mai poate citi
+              medicamentele — toate dintr-un motiv simplu: lipsa accesului la o consultație și la o
+              pereche de ochelari.
+            </p>
+            <p>
+              Asociația Carla's Vision a luat naștere din dorința de a schimba aceste povești. Oferim
+              consultații oftalmologice gratuite și ochelari de vedere fără costuri celor care nu și-i
+              permit.
+            </p>
+            <p>
+              Fiecare consultație înseamnă o problemă descoperită la timp. Fiecare pereche de ochelari
+              înseamnă șanse noi, încredere și independență.
+            </p>
+          </div>
+        </div>
+        <div class="bg-navy-50 rounded-2xl p-10 border border-navy-100">
+          <div class="flex justify-center mb-6">
+            <img src="/logo.svg" alt="Carla's Vision" class="h-25 w-auto" />
+          </div>
+          <blockquote class="text-center">
+            <p class="text-navy-800 text-xl font-medium italic leading-relaxed">
+              "Împreună, putem reda claritatea privirii — și speranța."
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-16 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-white">Valorile noastre</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: "❤️", title: "Empatie", text: "Fiecare beneficiar are o poveste. Ascultăm, înțelegem și acționăm cu grijă." },
+          { icon: "🎯", title: "Impact real", text: "Măsurăm rezultatele și ne asigurăm că ajutorul ajunge la cei care au cu adevărat nevoie." },
+          { icon: "🤝", title: "Parteneriat", text: "Construim împreună cu medici, companii și voluntari o rețea solidă de sprijin." },
+          { icon: "🔍", title: "Transparență", text: "Fiecare donație este urmărită și raportată. Știi exact cum sunt folosite resursele." },
+        ].map((v) => (
+          <div class="glass-card rounded-xl p-6 text-center">
+            <div class="text-4xl mb-4">{v.icon}</div>
+            <h3 class="font-bold text-white text-lg mb-2">{v.title}</h3>
+            <p class="text-navy-100 text-sm leading-relaxed">{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team placeholder -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-navy-900">Echipa noastră</h2>
+        <p class="text-muted mt-2">Oamenii din spatele fiecărei perechi de ochelari</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          { nume: "Carla [Prenume]", rol: "Fondator & Director Executiv" },
+          { nume: "Dr. [Nume]", rol: "Medic Oftalmolog Coordonator" },
+          { nume: "[Nume]", rol: "Coordonator Proiecte" },
+        ].map((member) => (
+          <div class="text-center">
+            <div class="w-24 h-24 bg-navy-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+              <svg class="w-10 h-10 text-navy-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-navy-900">{member.nume}</h3>
+            <p class="text-muted text-sm">{member.rol}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-faint text-sm mt-8 italic">
+        * Actualizează informațiile echipei în src/pages/ro/despre-noi.astro
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-navy-900 text-white text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-4">Alătură-te misiunii noastre</h2>
+      <p class="text-navy-300 mb-8">Prin voluntariat, parteneriat sau completând Formularul 230 — fiecare contribuție contează.</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href={r.form230} class="px-6 py-3 bg-amber-brand text-navy-950 font-bold rounded-lg hover:bg-amber-brand-dark transition-colors">Formular 230</a>
+        <a href={`mailto:${org.email}`} class="px-6 py-3 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-navy-900 transition-colors">Contactează-ne</a>
+      </div>
+    </div>
+  </section>
+</Layout>
