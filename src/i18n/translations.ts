@@ -240,22 +240,24 @@ export function t(lang: Lang) {
   return translations[lang];
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export const routes: Record<Lang, Record<string, string>> = {
   ro: {
-    home: "/ro/",
-    about: "/ro/despre-noi",
-    projects: "/ro/proiecte",
-    partners: "/ro/parteneri",
-    donations: "/ro/donatii",
-    form230: "/ro/formular-230",
+    home: `${base}/ro/`,
+    about: `${base}/ro/despre-noi`,
+    projects: `${base}/ro/proiecte`,
+    partners: `${base}/ro/parteneri`,
+    donations: `${base}/ro/donatii`,
+    form230: `${base}/ro/formular-230`,
   },
   en: {
-    home: "/en/",
-    about: "/en/about",
-    projects: "/en/projects",
-    partners: "/en/partners",
-    donations: "/en/donate",
-    form230: "/en/form-230",
+    home: `${base}/en/`,
+    about: `${base}/en/about`,
+    projects: `${base}/en/projects`,
+    partners: `${base}/en/partners`,
+    donations: `${base}/en/donate`,
+    form230: `${base}/en/form-230`,
   },
 };
 
